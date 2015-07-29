@@ -411,6 +411,7 @@
 				42A418C31B68C29A0026D3F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		42A418C41B68C29A0026D3F5 /* Build configuration list for PBXNativeTarget "CalculatriceSwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +420,7 @@
 				42A418C61B68C29A0026D3F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
