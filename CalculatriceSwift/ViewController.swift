@@ -126,15 +126,12 @@ class ViewController: UIViewController {
         
         while ( i > 0 )
         {
-//            (memoryArray[i] as! UIButton).titleLabel?.text = (memoryArray[i-1] as! UIButton).titleLabel!.text
             (memoryArray[i] as! UIButton).setTitle((memoryArray[i-1] as! UIButton).titleLabel!.text, forState: UIControlState.Normal)
             
             (memoryArray[i] as! UIButton).hidden = false
             i--
         }
         
-//        var titleLabel:UILabel = (memoryArray[0] as! UIButton).titleLabel!
-//        titleLabel.text = label.text
         (memoryArray[0] as! UIButton).setTitle(label.text, forState: UIControlState.Normal)
         (memoryArray[0] as! UIButton).hidden = false
         
@@ -147,7 +144,7 @@ class ViewController: UIViewController {
     
     @IBAction func memoryAccess(sender: UIButton)
     {
-        if ( sender.titleLabel!.text == "")
+        if ( sender.titleLabel!.text != "")
         {
             label.text = sender.titleLabel?.text
         }
@@ -161,7 +158,7 @@ class ViewController: UIViewController {
     
     func pushButtonWithInt(_value:String)
     {
-        if ( nextOperation?.selected == true || nextOperation == buttonEqual)
+        if ( nextOperation?.selected == true )
         {
             label.text = _value
             nextOperation?.selected = false
