@@ -57,6 +57,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
     required init(coder aDecoder: NSCoder) {
         nextOperation = nil
         nbCurrentMemory = 0
@@ -66,6 +67,9 @@ class ViewController: UIViewController {
         
     }
     
+    /**
+    Reset all operations properties
+    */
     func reset()
     {
         label.text = ""
@@ -77,12 +81,21 @@ class ViewController: UIViewController {
         result = 0
     }
     
+    /**
+    Handle the adding of digits on the label text
     
+    :param: sender UIButton that is pressed
+    */
     @IBAction func pushNumericButton(sender: UIButton)
     {
         pushButtonWithInt(String(sender.tag))
     }
     
+    /**
+    Applies the last operation to the operands and sets the next operation
+    
+    :param: sender UIButtonOperation of the last operation pressed
+    */
     @IBAction func pushOperationButton(sender: UIButtonOperation)
     {
         operand2 = label.text
@@ -93,7 +106,8 @@ class ViewController: UIViewController {
         }
         else
         {
-            result = operand2.doubleValue
+            // Exemple of use atof that casts a string into a double
+            result = atof(operand2.description)
         }
         
         nextOperation?.selected = false
@@ -105,21 +119,41 @@ class ViewController: UIViewController {
         
     }
     
+    /**
+    Resets operations properties
+    
+    :param: sender not used
+    */
     @IBAction func pushCancelButton(sender: UIButton)
     {
         reset()
     }
     
+    /**
+    Adds a comma at the end of the label
+    
+    :param: sender not used
+    */
     @IBAction func pushCommaButton(sender: UIButton)
     {
         pushButtonWithInt(".")
     }
     
+    /**
+    Change the sign of the label
+    
+    :param: sender not used
+    */
     @IBAction func pushNegativeButton(sender: UIButton)
     {
         label.text = "-" + label.text
     }
     
+    /**
+    Shift memories down and sets the first one to the label text
+    
+    :param: sender not used
+    */
     @IBAction func addMemory(sender: UIButton)
     {
         var i:Int = nbCurrentMemory
@@ -142,6 +176,11 @@ class ViewController: UIViewController {
         
     }
     
+    /**
+    Set the label to the UIButton text if it's not empty
+    
+    :param: sender a memory button that was pressed
+    */
     @IBAction func memoryAccess(sender: UIButton)
     {
         if ( sender.titleLabel!.text != "")
@@ -150,12 +189,11 @@ class ViewController: UIViewController {
         }
     }
     
-    /*!
-    *  @author François Juteau
-    *
-    *  @brief  Methodes interne
-    */
+    /**
+    Adds or start a fresh digit depending on if an operation is selected or not
     
+    :param: _value digit to add
+    */
     func pushButtonWithInt(_value:String)
     {
         if ( nextOperation?.selected == true )
@@ -169,12 +207,18 @@ class ViewController: UIViewController {
         }
     }
     
+    /**
+    Adds a digit to existants digits in label
+    
+    :param: _digit digit to add
+    */
     func addDigit(_digit:String)
     {
         label.text = label.text + _digit
     }
     
     
+    // MARK: - Methodes used in UIButtonOperation
     
     func doPlusOperation(_op1:Double, _op2:Double)->Double
     {
