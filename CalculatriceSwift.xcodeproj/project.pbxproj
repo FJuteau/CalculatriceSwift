@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		427666E51B68D5B0008A05CC /* UIButtonOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427666E41B68D5B0008A05CC /* UIButtonOperation.swift */; };
 		42A418A81B68C29A0026D3F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A418A71B68C29A0026D3F5 /* AppDelegate.swift */; };
 		42A418AA1B68C29A0026D3F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A418A91B68C29A0026D3F5 /* ViewController.swift */; };
 		42A418AD1B68C29A0026D3F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42A418AB1B68C29A0026D3F5 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		427666E41B68D5B0008A05CC /* UIButtonOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonOperation.swift; sourceTree = "<group>"; };
 		42A418A21B68C29A0026D3F5 /* CalculatriceSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalculatriceSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		42A418A61B68C29A0026D3F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42A418A71B68C29A0026D3F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,9 +58,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		427666E31B68D58E008A05CC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				427666E41B68D5B0008A05CC /* UIButtonOperation.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		42A418991B68C29A0026D3F5 = {
 			isa = PBXGroup;
 			children = (
+				427666E31B68D58E008A05CC /* Classes */,
 				42A418A41B68C29A0026D3F5 /* CalculatriceSwift */,
 				42A418BA1B68C29A0026D3F5 /* CalculatriceSwiftTests */,
 				42A418A31B68C29A0026D3F5 /* Products */,
@@ -213,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A418AA1B68C29A0026D3F5 /* ViewController.swift in Sources */,
+				427666E51B68D5B0008A05CC /* UIButtonOperation.swift in Sources */,
 				42A418A81B68C29A0026D3F5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

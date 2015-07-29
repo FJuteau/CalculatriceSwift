@@ -86,7 +86,7 @@
                                     <action selector="pushNegativeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2MV-LK-0Jp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ey-pm-2Wg">
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ey-pm-2Wg" customClass="UIButtonOperation" customModule="CalculatriceSwift" customModuleProvider="target">
                                 <rect key="frame" x="359.5" y="124" width="112" height="93"/>
                                 <color key="backgroundColor" red="0.92900000000000005" green="0.83099999999999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="/">
@@ -138,7 +138,7 @@
                                     <action selector="pushNumericButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ri1-Zs-lAd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Deh-Ry-AtY">
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Deh-Ry-AtY" customClass="UIButtonOperation" customModule="CalculatriceSwift" customModuleProvider="target">
                                 <rect key="frame" x="359.5" y="219.5" width="112" height="93.5"/>
                                 <color key="backgroundColor" red="0.92900000000000005" green="0.83099999999999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="*">
@@ -255,8 +255,8 @@
                                     <action selector="pushCommaButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1a6-ex-tLA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeJ-PQ-RPV">
-                                <rect key="frame" x="245.5" y="505" width="112.5" height="93"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeJ-PQ-RPV" customClass="UIButtonOperation" customModule="CalculatriceSwift" customModuleProvider="target">
+                                <rect key="frame" x="245" y="505" width="112.5" height="93"/>
                                 <color key="backgroundColor" red="0.92900000000000005" green="0.83099999999999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="=">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -265,10 +265,10 @@
                                     <rect key="frame" x="360" y="345" width="112" height="53"/>
                                 </variation>
                                 <connections>
-                                    <action selector="pushEqualButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lsf-b5-8rw"/>
+                                    <action selector="pushOperationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="14p-sc-Twd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmM-2T-9zx">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WmM-2T-9zx" customClass="UIButtonOperation" customModule="CalculatriceSwift" customModuleProvider="target">
                                 <rect key="frame" x="359.5" y="409.5" width="112" height="93.5"/>
                                 <color key="backgroundColor" red="0.92900000000000005" green="0.83099999999999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="+">
@@ -339,7 +339,7 @@
                                     <action selector="memoryAccess:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5cF-AV-dH4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7h-GI-ioy">
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o7h-GI-ioy" customClass="UIButtonOperation" customModule="CalculatriceSwift" customModuleProvider="target">
                                 <rect key="frame" x="359.5" y="315" width="112" height="93"/>
                                 <color key="backgroundColor" red="0.92900000000000005" green="0.83099999999999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="-">
@@ -353,7 +353,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9F8-RZ-vyR">
-                                <rect key="frame" x="360.5" y="505" width="111.5" height="93"/>
+                                <rect key="frame" x="360" y="505" width="111.5" height="93"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.74901960779999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -477,7 +477,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonDiv" destination="6ey-pm-2Wg" id="UyW-xX-lka"/>
-                        <outlet property="buttonEqual" destination="DeJ-PQ-RPV" id="6rN-VC-0gJ"/>
+                        <outlet property="buttonEqual" destination="DeJ-PQ-RPV" id="llt-YM-hjU"/>
                         <outlet property="buttonMoins" destination="o7h-GI-ioy" id="qSk-w9-Brh"/>
                         <outlet property="buttonMulti" destination="Deh-Ry-AtY" id="BNC-xe-s1K"/>
                         <outlet property="buttonPlus" destination="WmM-2T-9zx" id="NU3-Rf-Sm2"/>

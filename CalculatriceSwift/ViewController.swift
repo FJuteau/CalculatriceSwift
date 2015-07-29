@@ -10,18 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var operand1:String = ""
-    var operand2:String = ""
+    var operand1:NSString = ""
+    var operand2:NSString = ""
     var result:Double = 0
-    var nextOperation:UIButton?
+    var nextOperation:UIButtonOperation?
     
     @IBOutlet weak var label: UITextField!
     
-    @IBOutlet weak var buttonPlus: UIButton!
-    @IBOutlet weak var buttonMoins: UIButton!
-    @IBOutlet weak var buttonMulti: UIButton!
-    @IBOutlet weak var buttonDiv: UIButton!
-    @IBOutlet weak var buttonEqual: UIButton!
+    @IBOutlet weak var buttonPlus: UIButtonOperation!
+    @IBOutlet weak var buttonMoins: UIButtonOperation!
+    @IBOutlet weak var buttonMulti: UIButtonOperation!
+    @IBOutlet weak var buttonDiv: UIButtonOperation!
+    @IBOutlet weak var buttonEqual: UIButtonOperation!
     
     var memoryArray:NSMutableArray
     var nbCurrentMemory:Int
@@ -42,6 +42,12 @@ class ViewController: UIViewController {
         memoryArray.addObject(memory4)
         memoryArray.addObject(memory5)
         
+        buttonPlus.setFonctionOperation(doPlusOperation)
+        buttonMoins.setFonctionOperation(doMoinsOperation)
+        buttonMulti.setFonctionOperation(doMultiOperation)
+        buttonDiv.setFonctionOperation(doDivOperation)
+        buttonEqual.setFonctionOperation(doEqualOperation)
+        
         reset()
         
     }
@@ -57,6 +63,7 @@ class ViewController: UIViewController {
         memoryArray = NSMutableArray.new()
         
         super.init(coder: aDecoder)
+        
     }
     
     func reset()
@@ -76,13 +83,25 @@ class ViewController: UIViewController {
         pushButtonWithInt(String(sender.tag))
     }
     
-    @IBAction func pushOperationButton(sender: UIButton)
+    @IBAction func pushOperationButton(sender: UIButtonOperation)
     {
+        operand2 = label.text
         
-    }
-    
-    @IBAction func pushEqualButton(sender: UIButton)
-    {
+        if (( nextOperation ) != nil)
+        {
+            result = nextOperation!.doOperation(operand1.doubleValue, _op2: operand2.doubleValue)
+        }
+        else
+        {
+            result = operand2.doubleValue
+        }
+        
+        nextOperation?.selected = false
+        nextOperation = sender
+        
+        operand1 = result.description
+        label.text = String(operand1)
+        nextOperation?.selected = true
         
     }
     
@@ -134,5 +153,41 @@ class ViewController: UIViewController {
     {
         label.text = label.text + _digit
     }
+    
+    
+    
+    func doPlusOperation(_op1:Double, _op2:Double)->Double
+    {
+        return _op1 + _op2
+    }
+    
+    func doMoinsOperation(_op1:Double, _op2:Double)->Double
+    {
+        return _op1 - _op2
+    }
+    
+    func doMultiOperation(_op1:Double, _op2:Double)->Double
+    {
+        return _op1 * _op2
+    }
+    
+    func doDivOperation(_op1:Double, _op2:Double)->Double
+    {
+        if (Float(_op2) != 0.0)
+        {
+            return _op1 / _op2
+        }
+        else
+        {
+            return Double(0)
+        }
+    }
+    
+    func doEqualOperation(_op1:Double, _op2:Double)->Double
+    {
+        return _op1
+    }
+    
+    
 }
 
