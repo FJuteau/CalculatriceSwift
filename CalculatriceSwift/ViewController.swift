@@ -122,12 +122,35 @@ class ViewController: UIViewController {
     
     @IBAction func addMemory(sender: UIButton)
     {
+        var i:Int = nbCurrentMemory
+        
+        while ( i > 0 )
+        {
+//            (memoryArray[i] as! UIButton).titleLabel?.text = (memoryArray[i-1] as! UIButton).titleLabel!.text
+            (memoryArray[i] as! UIButton).setTitle((memoryArray[i-1] as! UIButton).titleLabel!.text, forState: UIControlState.Normal)
+            
+            (memoryArray[i] as! UIButton).hidden = false
+            i--
+        }
+        
+//        var titleLabel:UILabel = (memoryArray[0] as! UIButton).titleLabel!
+//        titleLabel.text = label.text
+        (memoryArray[0] as! UIButton).setTitle(label.text, forState: UIControlState.Normal)
+        (memoryArray[0] as! UIButton).hidden = false
+        
+        if ( nbCurrentMemory < memoryArray.count-1)
+        {
+            nbCurrentMemory++
+        }
         
     }
     
     @IBAction func memoryAccess(sender: UIButton)
     {
-        
+        if ( sender.titleLabel!.text == "")
+        {
+            label.text = sender.titleLabel?.text
+        }
     }
     
     /*!
