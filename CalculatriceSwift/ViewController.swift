@@ -107,17 +107,17 @@ class ViewController: UIViewController {
     
     @IBAction func pushCancelButton(sender: UIButton)
     {
-        
+        reset()
     }
     
     @IBAction func pushCommaButton(sender: UIButton)
     {
-        
+        pushButtonWithInt(".")
     }
     
     @IBAction func pushNegativeButton(sender: UIButton)
     {
-        
+        label.text = "-" + label.text
     }
     
     @IBAction func addMemory(sender: UIButton)
