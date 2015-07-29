@@ -481,6 +481,7 @@
                         <outlet property="buttonMoins" destination="o7h-GI-ioy" id="qSk-w9-Brh"/>
                         <outlet property="buttonMulti" destination="Deh-Ry-AtY" id="BNC-xe-s1K"/>
                         <outlet property="buttonPlus" destination="WmM-2T-9zx" id="NU3-Rf-Sm2"/>
+                        <outlet property="label" destination="Ajm-dT-avI" id="z3Q-MV-gij"/>
                         <outlet property="memory1" destination="0Xc-bL-ynC" id="sOb-8w-5Zr"/>
                         <outlet property="memory2" destination="02B-v1-P82" id="Zoo-Ba-8iA"/>
                         <outlet property="memory3" destination="P56-V6-Mh4" id="bGE-Jl-ubx"/>
