@@ -10,38 +10,54 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: Properties
+    
+    /// First operand in NSString
     var operand1:NSString = ""
+    /// Second operand in NSString
     var operand2:NSString = ""
+    
+    /// Result in double
     var result:Double = 0
+    /// UIButtonOperation cache that will keep the next operation that will be used
     var nextOperation:UIButtonOperation?
     
+    /// Label outlet
     @IBOutlet weak var label: UITextField!
     
+    // Operations button outlet
     @IBOutlet weak var buttonPlus: UIButtonOperation!
     @IBOutlet weak var buttonMoins: UIButtonOperation!
     @IBOutlet weak var buttonMulti: UIButtonOperation!
     @IBOutlet weak var buttonDiv: UIButtonOperation!
     @IBOutlet weak var buttonEqual: UIButtonOperation!
     
+    ///  An array that will stock all the memory buttons
     var memoryArray:NSMutableArray
+    /// The number of memory currently displayed
     var nbCurrentMemory:Int
     
+    // Memory buttons
     @IBOutlet weak var memory1: UIButton!
     @IBOutlet weak var memory2: UIButton!
     @IBOutlet weak var memory3: UIButton!
     @IBOutlet weak var memory4: UIButton!
     @IBOutlet weak var memory5: UIButton!
     
+    // MARK: - Controller inner methodes
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        // Assinging every memory buttons to the buttos array
         memoryArray.addObject(memory1)
         memoryArray.addObject(memory2)
         memoryArray.addObject(memory3)
         memoryArray.addObject(memory4)
         memoryArray.addObject(memory5)
         
+        // Adding each fonction used on operations buttons
         buttonPlus.setFonctionOperation(doPlusOperation)
         buttonMoins.setFonctionOperation(doMoinsOperation)
         buttonMulti.setFonctionOperation(doMultiOperation)
@@ -57,6 +73,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Inits and resets
     
     required init(coder aDecoder: NSCoder) {
         nextOperation = nil
@@ -81,6 +98,8 @@ class ViewController: UIViewController {
         result = 0
     }
     
+    // MARK: - Actions on the view
+    
     /**
     Handle the adding of digits on the label text
     
@@ -102,6 +121,7 @@ class ViewController: UIViewController {
         
         if (( nextOperation ) != nil)
         {
+            // Use of the method affected on each UIButtonOperation
             result = nextOperation!.doOperation(operand1.doubleValue, _op2: operand2.doubleValue)
         }
         else
@@ -189,6 +209,8 @@ class ViewController: UIViewController {
         }
     }
     
+    // MARK: - Intern methodes
+    
     /**
     Adds or start a fresh digit depending on if an operation is selected or not
     
@@ -196,6 +218,7 @@ class ViewController: UIViewController {
     */
     func pushButtonWithInt(_value:String)
     {
+        // If an operation is selected, we display only the next numeric button pressed
         if ( nextOperation?.selected == true )
         {
             label.text = _value
