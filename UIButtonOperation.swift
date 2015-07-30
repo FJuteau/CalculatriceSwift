@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-/// A class that inherits from UIButton to add a methode that will depend on the selected button
+/// A class that inherits from UIButton to add a method that will depend on the selected button
 class UIButtonOperation:UIButton
 {
     /// Function not defined until the setter

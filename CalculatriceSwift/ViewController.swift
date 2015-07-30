@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     var nextOperation:UIButtonOperation?
     
     /// Label outlet
-    @IBOutlet weak var label: UITextField!
+    @IBOutlet weak var label: UILabel!
     
     // Operations button outlet
     @IBOutlet weak var buttonPlus: UIButtonOperation!
@@ -117,26 +117,32 @@ class ViewController: UIViewController {
     */
     @IBAction func pushOperationButton(sender: UIButtonOperation)
     {
-        operand2 = label.text
-        
-        if (( nextOperation ) != nil)
+        // Exception : an operation button can be pressed after equal button
+        if (nextOperation?.selected != true || nextOperation == buttonEqual)
         {
-            // Use of the method affected on each UIButtonOperation
-            result = nextOperation!.doOperation(operand1.doubleValue, _op2: operand2.doubleValue)
+            operand2 = label.text!
+            
+            if (( nextOperation ) != nil)
+            {
+                // Use of the method affected on each UIButtonOperation
+                result = nextOperation!.doOperation(operand1.doubleValue, _op2: operand2.doubleValue)
+            }
+            else
+            {
+                // Exemple of use atof that casts a string into a double
+                result = atof(operand2.description)
+            }
+            
+            // Set false only used for the buttonEqual case
+            nextOperation?.selected = false
+            
+            nextOperation = sender
+            
+            operand1 = result.description
+            label.text = String(operand1)
+            
+            nextOperation?.selected = true
         }
-        else
-        {
-            // Exemple of use atof that casts a string into a double
-            result = atof(operand2.description)
-        }
-        
-        nextOperation?.selected = false
-        nextOperation = sender
-        
-        operand1 = result.description
-        label.text = String(operand1)
-        nextOperation?.selected = true
-        
     }
     
     /**
@@ -166,7 +172,7 @@ class ViewController: UIViewController {
     */
     @IBAction func pushNegativeButton(sender: UIButton)
     {
-        label.text = "-" + label.text
+        label.text = (atof(label.text!) * -1).description
     }
     
     /**
@@ -206,6 +212,7 @@ class ViewController: UIViewController {
         if ( sender.titleLabel!.text != "")
         {
             label.text = sender.titleLabel?.text
+            nextOperation?.selected = false
         }
     }
     
@@ -237,7 +244,7 @@ class ViewController: UIViewController {
     */
     func addDigit(_digit:String)
     {
-        label.text = label.text + _digit
+        label.text = label.text! + _digit
     }
     
     
@@ -272,7 +279,7 @@ class ViewController: UIViewController {
     
     func doEqualOperation(_op1:Double, _op2:Double)->Double
     {
-        return _op1
+        return atof(label.text!)
     }
     
     
