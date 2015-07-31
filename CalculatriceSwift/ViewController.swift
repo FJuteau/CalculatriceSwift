@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Assinging every memory buttons to the buttos array
+        // Assinging every memory buttons to the buttons array
         memoryArray.addObject(memory1)
         memoryArray.addObject(memory2)
         memoryArray.addObject(memory3)
@@ -64,8 +64,12 @@ class ViewController: UIViewController {
         buttonDiv.setFonctionOperation(doDivOperation)
         buttonEqual.setFonctionOperation(doEqualOperation)
         
-        reset()
+        // Swipe gesture regognizer declaration to delete a character
+        var swipe:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: ("handleSwipeLeftGesture"))
+        swipe.direction = UISwipeGestureRecognizerDirection.Left
+        view.addGestureRecognizer(swipe)
         
+        reset()
     }
     
     override func didReceiveMemoryWarning() {
@@ -75,6 +79,7 @@ class ViewController: UIViewController {
     
     // MARK: - Inits and resets
     
+    // Init override
     required init(coder aDecoder: NSCoder) {
         nextOperation = nil
         nbCurrentMemory = 0
@@ -125,7 +130,7 @@ class ViewController: UIViewController {
             if (( nextOperation ) != nil)
             {
                 // Use of the method affected on each UIButtonOperation
-                result = nextOperation!.doOperation(operand1.doubleValue, _op2: operand2.doubleValue)
+                handleErrorMessage(nextOperation!.doOperation(operand1.doubleValue, _op2: operand2.doubleValue, _result:&result))
             }
             else
             {
@@ -182,24 +187,26 @@ class ViewController: UIViewController {
     */
     @IBAction func addMemory(sender: UIButton)
     {
-        var i:Int = nbCurrentMemory
-        
-        while ( i > 0 )
+        if (label.text != "")
         {
-            (memoryArray[i] as! UIButton).setTitle((memoryArray[i-1] as! UIButton).titleLabel!.text, forState: UIControlState.Normal)
+            var i:Int = nbCurrentMemory
             
-            (memoryArray[i] as! UIButton).hidden = false
-            i--
+            while ( i > 0 )
+            {
+                (memoryArray[i] as! UIButton).setTitle((memoryArray[i-1] as! UIButton).titleLabel!.text, forState: UIControlState.Normal)
+                
+                (memoryArray[i] as! UIButton).hidden = false
+                i--
+            }
+            
+            (memoryArray[0] as! UIButton).setTitle(label.text, forState: UIControlState.Normal)
+            (memoryArray[0] as! UIButton).hidden = false
+            
+            if ( nbCurrentMemory < memoryArray.count-1)
+            {
+                nbCurrentMemory++
+            }
         }
-        
-        (memoryArray[0] as! UIButton).setTitle(label.text, forState: UIControlState.Normal)
-        (memoryArray[0] as! UIButton).hidden = false
-        
-        if ( nbCurrentMemory < memoryArray.count-1)
-        {
-            nbCurrentMemory++
-        }
-        
     }
     
     /**
@@ -216,7 +223,7 @@ class ViewController: UIViewController {
         }
     }
     
-    // MARK: - Intern methodes
+    // MARK: - Intern methods
     
     /**
     Adds or start a fresh digit depending on if an operation is selected or not
@@ -247,41 +254,82 @@ class ViewController: UIViewController {
         label.text = label.text! + _digit
     }
     
+    // MARK: - Handling methods
     
-    // MARK: - Methodes used in UIButtonOperation
+    /**
+    Handle the displaying of an error message
     
-    func doPlusOperation(_op1:Double, _op2:Double)->Double
+    :param: _message mesage to display
+    */
+    func handleErrorMessage(_message:String)
     {
-        return _op1 + _op2
-    }
-    
-    func doMoinsOperation(_op1:Double, _op2:Double)->Double
-    {
-        return _op1 - _op2
-    }
-    
-    func doMultiOperation(_op1:Double, _op2:Double)->Double
-    {
-        return _op1 * _op2
-    }
-    
-    func doDivOperation(_op1:Double, _op2:Double)->Double
-    {
-        if (Float(_op2) != 0.0)
+        println("MESSAGE ERROR : \(_message)")
+            
+        if ( _message != "")
         {
-            return _op1 / _op2
+            var alert = UIAlertController(title: "Alert", message: _message, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
+    }
+    
+    /**
+    Handle the left swipe gesture by deleting the last character on the label
+    */
+    func handleSwipeLeftGesture()
+    {
+        // Two ways to do it
+//        label.text?.removeAtIndex(label.text!.endIndex.predecessor())
+        
+        if ( nextOperation?.selected == true || nextOperation == buttonEqual || label.text == "")
+        {
+            reset()
         }
         else
         {
-            return Double(0)
+            label.text = dropLast(label.text!)
         }
     }
     
-    func doEqualOperation(_op1:Double, _op2:Double)->Double
+    // MARK: - Methods used in UIButtonOperation
+    
+    func doPlusOperation(_op1:Double, _op2:Double, inout _result:Double)->String
     {
-        return atof(label.text!)
+        _result = _op1 + _op2
+        return ""
     }
     
+    func doMoinsOperation(_op1:Double, _op2:Double, inout _result:Double)->String
+    {
+        _result = _op1 - _op2
+        return ""
+    }
+    
+    func doMultiOperation(_op1:Double, _op2:Double, inout _result:Double)->String
+    {
+        _result = _op1 * _op2
+        return ""
+    }
+    
+    func doDivOperation(_op1:Double, _op2:Double, inout _result:Double)->String
+    {
+        if (Float(_op2) != 0.0)
+        {
+            _result = _op1 / _op2
+            return ""
+        }
+        else
+        {
+            // Case when divided by 0
+            return "Indivisible par 0"
+        }
+    }
+    
+    func doEqualOperation(_op1:Double, _op2:Double, inout _result:Double)->String
+    {
+        _result = atof(label.text!)
+        return ""
+    }
     
 }
 

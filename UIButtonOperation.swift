@@ -13,7 +13,7 @@ import UIKit
 class UIButtonOperation:UIButton
 {
     /// Function not defined until the setter
-    var fonction:((Double,Double)->Double)?
+    var fonction:((Double,Double,inout Double)->String)?
     
     required init(coder aDecoder: NSCoder)
     {
@@ -25,7 +25,7 @@ class UIButtonOperation:UIButton
     
     :param: fonc function
     */
-    func setFonctionOperation(fonc:(Double, Double)->Double)
+    func setFonctionOperation(fonc:(Double,Double,inout Double)->String)
     {
         fonction = fonc
     }
@@ -35,11 +35,12 @@ class UIButtonOperation:UIButton
     
     :param: _op1 first operand
     :param: _op2 second operand
+    :param: _result result sent to the function
     
-    :returns: result of the operation
+    :returns: an error message
     */
-    func doOperation(_op1:Double, _op2:Double)->Double
+    func doOperation(_op1:Double, _op2:Double, inout _result:Double)->String
     {
-        return fonction!(_op1, _op2)
+        return fonction!(_op1, _op2, &_result)
     }
 }
